@@ -41,6 +41,6 @@ if [[ -d ${PATH} ]]; then
     /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan restart
   fi
   [[ -f ${PATH}/dynamix.system.autofan.cpu.sh ]] && /usr/bin/cp -af ${PATH}/dynamix.system.autofan.cpu.sh /root/
-  /usr/bin/grep "dynamix.system.autofan.cpu" /etc/cron.d/root || echo -e "\n#CRON for autofan.cpu\n*/1 * * * * /bin/bash /root/dynamix.system.autofan.cpu.sh" >> /etc/cron.d/root
+  /usr/bin/grep "dynamix.system.autofan.cpu" /etc/cron.d/root || echo -e "\n#CRON for autofan.cpu\n*/1 * * * * /bin/bash /root/dynamix.system.autofan.cpu.sh > /dev/null 2>&1" >> /etc/cron.d/root
   echo "dynamix.system.autofan.cpu done!"
 fi
