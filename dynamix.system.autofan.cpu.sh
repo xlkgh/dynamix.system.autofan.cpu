@@ -32,5 +32,6 @@ if [[ -d ${PATH} ]]; then
     /usr/bin/cp -af ${PATH}/${ShName} ${BINPATH}/${ShName}
     /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan restart
   fi
-  echo "dynamix.system.autofan.cpu done!"
+  echo -e "dynamix.system.autofan.cpu done!\n"
+  echo -e "backup file path : ${PATH}/backup_${ShName}\n"
 fi
