@@ -4,7 +4,7 @@
 #=======================================================================================
 #  Description:
 #
-#  dynamix.system.autofan 改为 cpu温度获取
+#  app:dynamix.system.autofan chang to get cpu temp
 PATH="/tmp/dynamix.system.autofan.cpu"
 ShName="autofan"
 BINPATH="/usr/local/emhttp/plugins/dynamix.system.autofan/scripts"
@@ -17,9 +17,9 @@ else
 fi
 
 if [[ -d ${PATH} ]]; then 
-  cd ${PATH} && /usr/bin/git pull
+  echo ""
 else
-  cd /tmp && /usr/bin/git clone https://github.com/chaosk731/dynamix.system.autofan.cpu.git
+  cd /tmp && /usr/bin/wget -q https://github.com/chaosk731/dynamix.system.autofan.cpu/blob/master/autofan
 fi
 
 if [[ -d ${PATH} ]]; then
