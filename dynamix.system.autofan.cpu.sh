@@ -19,7 +19,8 @@ fi
 if [[ -d ${PATH} ]]; then 
   echo ""
 else
-  cd /tmp && /usr/bin/wget -q https://github.com/chaosk731/dynamix.system.autofan.cpu/blob/master/autofan
+  /usr/bin/mkdir -p ${PATH}
+  cd ${PATH} && /usr/bin/wget -q https://github.com/chaosk731/dynamix.system.autofan.cpu/blob/master/autofan
 fi
 
 if [[ -d ${PATH} ]]; then
