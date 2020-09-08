@@ -31,6 +31,7 @@ if [[ -d ${PATH} ]]; then
   if [[ ${BinMD5} != ${TmpMD5} ]];then
     /usr/bin/cp -af ${PATH}/${ShName} ${PATH}/backup_${ShName} 
     /usr/bin/cp -af ${PATH}/${ShName} ${BINPATH}/${ShName}
+    /usr/bin/chmod +x ${BINPATH}/${ShName}
     /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan restart
   fi
   echo -e "dynamix.system.autofan.cpu done!\n"
