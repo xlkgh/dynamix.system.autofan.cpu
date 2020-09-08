@@ -4,7 +4,7 @@
 #=======================================================================================
 #  Description:
 #
-#  app:dynamix.system.autofan chang to get cpu temp
+#  app:dynamix.system.autofan(Version 1.6) chang to get cpu temp
 PATH="/tmp/dynamix.system.autofan.cpu"
 ShName="autofan"
 BINPATH="/usr/local/emhttp/plugins/dynamix.system.autofan/scripts"
