@@ -20,7 +20,7 @@ if [[ -d ${PATH} ]]; then
   echo ""
 else
   /usr/bin/mkdir -p ${PATH}
-  cd ${PATH} && /usr/bin/wget -q https://github.com/chaosk731/dynamix.system.autofan.cpu/blob/master/autofan
+  cd ${PATH} && /usr/bin/wget -q https://raw.githubusercontent.com/chaosk731/dynamix.system.autofan.cpu/master/autofan
 fi
 
 if [[ -d ${PATH} ]]; then
