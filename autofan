@@ -222,6 +222,7 @@ function_get_current_cpu_temp() {
   mb_temp=$($bin_sen | grep "MB Temp" | awk '{print $3}' | tr -cd "[0-9.]" | sed "s/\..*//g")
   if [[ $cpu_temp -gt 1 ]];then
     HIGHEST_TEMP=$mb_temp
+    LOG_STR="CURRENT HIGHEST TEMP IS MB(${mb_temp})"
   else
     echo "Check command sensors or MB Temp(Dynamix System Temperature)" | logger -t$program_name
   fi
@@ -233,7 +234,7 @@ function_get_current_cpu_temp() {
     #compare mb_temp and cpu_temp
     if [[ $cpu_temp -gt $HIGHEST_TEMP ]];then
       HIGHEST_TEMP=$cpu_temp
-      echo "cpu_temp(${cpu_temp}) is greater than mb_temp(${mb_temp})"
+      LOG_STR="cpu_temp(${cpu_temp}) is greater than mb_temp(${mb_temp})"
     fi
   else
     echo "Check command sensors or CPU Temp(Dynamix System Temperature)" | logger -t$program_name
@@ -243,7 +244,7 @@ function_get_current_cpu_temp() {
   #compare hd_temp and cpu_temp
   if [[ $HIGHEST_TEMP -le $hd_temp ]]; then
     HIGHEST_TEMP=$hd_temp
-    echo "hd_temp(${hd_temp}) is greater than cpu_temp(${cpu_temp})"
+    LOG_STR="hd_temp(${hd_temp}) is greater than cpu_temp(${cpu_temp})"
   fi
 
   echo $HIGHEST_TEMP
@@ -318,6 +319,7 @@ function_change_fan_speed() {
     fi
     #echo "$program_name: Highest disk temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT"
     #echo "Highest disk temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT" | logger -t$program_name
+    echo "${LOG_STR}"
     echo "$program_name: CPU temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT"
     echo "CPU temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT" | logger -t$program_name
   fi
