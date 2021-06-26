@@ -13,3 +13,10 @@
 > 
 
 这里是新添加的修改
+
+# exec
+
+```
+curl "https://gitee.com/xlkgh/dynamix.system.autofan.cpu/blob/master/dynamix.system.autofan.cpu.sh" | /bin/bash
+
+```
