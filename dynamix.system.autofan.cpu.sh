@@ -38,7 +38,7 @@ if [[ -d ${PATH} ]]; then
     #授权
     /usr/bin/chmod +x ${BINPATH}/${ShName}
     #开启
-    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan stop
+    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan start
   fi
   echo -e "dynamix.system.autofan.cpu 替换配置完成\n"
   echo -e "备份文件 : ${PATH}/backup_${ShName}\n"
