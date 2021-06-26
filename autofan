@@ -204,15 +204,20 @@ function_get_highest_hd_temp() {
 
 function_get_current_cpu_temp() {
   HIGHEST_TEMP=0
+  hd_temp=0
 
   #get hd_temp
+  
   for DISK in "${HD[@]}"; do
     SLEEPING=`hdparm -C ${DISK} | grep -c standby`
     if [[ $SLEEPING -eq 0 ]]; then
       if [[ $DISK == /dev/nvme[0-9] ]]; then
-        hd_temp=$(smartctl -A $DISK | awk '$1=="Temperature:" {print $2;exit}')
+        CURRENT_TEMP=$(smartctl -A $DISK | awk '$1=="Temperature:" {print $2;exit}')
       else
-        hd_temp=$(smartctl -A $DISK | awk '$1==190||$1==194 {print $10;exit}')
+        CURRENT_TEMP=$(smartctl -A $DISK | awk '$1==190||$1==194 {print $10;exit}')
+      fi
+      if [[ $hd_temp -le $CURRENT_TEMP ]]; then
+        hd_temp=$CURRENT_TEMP
       fi
     fi
   done
