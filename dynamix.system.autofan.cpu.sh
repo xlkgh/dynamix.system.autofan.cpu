@@ -29,11 +29,17 @@ if [[ -d ${PATH} ]]; then
   [[ -f ${BINPATH}/${ShName} ]] && BinMD5=$(/usr/bin/md5sum ${BINPATH}/${ShName}|/usr/bin/awk '{print $1}')
   [[ -f ${PATH}/${ShName} ]] && TmpMD5=$(/usr/bin/md5sum ${PATH}/${ShName}|/usr/bin/awk '{print $1}')
   if [[ ${BinMD5} != ${TmpMD5} ]];then
-    /usr/bin/cp -af ${PATH}/${ShName} ${PATH}/backup_${ShName} 
+    #先停止
+    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan stop
+    #备份
+    /usr/bin/cp -af ${BINPATH}/${ShName} ${PATH}/backup_${ShName} 
+    #替换
     /usr/bin/cp -af ${PATH}/${ShName} ${BINPATH}/${ShName}
+    #授权
     /usr/bin/chmod +x ${BINPATH}/${ShName}
-    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan restart
+    #开启
+    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan stop
   fi
-  echo -e "dynamix.system.autofan.cpu done!\n"
-  echo -e "backup file path : ${PATH}/backup_${ShName}\n"
+  echo -e "dynamix.system.autofan.cpu 替换配置完成\n"
+  echo -e "备份文件 : ${PATH}/backup_${ShName}\n"
 fi
