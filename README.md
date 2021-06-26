@@ -1,4 +1,12 @@
-# dynamix.system.autofan.cpu
-基于unraid app dynamix.system.autofan，进行修改，将温度获取种类由磁盘改为cpu温度。便于nas diy玩家使用。cpu被动散热勿使用
-# exec
-curl "https://raw.githubusercontent.com/chaosk731/dynamix.system.autofan.cpu/master/dynamix.system.autofan.cpu.sh" | /bin/bash
+来源于 https://github.com/chaosk731/dynamix.system.autofan.cpu.git
+在此基础上修改为了gitee源，并对获取温度的代码作出调整
+
+以下是原修改
+> 
+> # dynamix.system.autofan.cpu
+> 基于unraid app dynamix.system.autofan，进行修改，将温度获取种类由磁盘改为cpu温度。便于nas diy玩家使用。cpu被动散热勿使用
+> # exec
+> curl "https://raw.githubusercontent.com/chaosk731/dynamix.system.autofan.cpu/master/dynamix.system.autofan.cpu.sh" | /bin/bash
+> 
+
+这里是新添加的修改
