@@ -17,6 +17,6 @@
 # exec
 
 ```
-curl "https://gitee.com/xlkgh/dynamix.system.autofan.cpu/blob/master/dynamix.system.autofan.cpu.sh" | /bin/bash
+curl "https://gitee.com/xlkgh/dynamix.system.autofan.cpu/raw/master/dynamix.system.autofan.cpu.sh" | /bin/bash
 
 ```
