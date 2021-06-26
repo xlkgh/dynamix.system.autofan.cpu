@@ -30,7 +30,7 @@ if [[ -d ${PATH} ]]; then
   [[ -f ${PATH}/${ShName} ]] && TmpMD5=$(/usr/bin/md5sum ${PATH}/${ShName}|/usr/bin/awk '{print $1}')
   if [[ ${BinMD5} != ${TmpMD5} ]];then
     #先停止
-    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan stop
+    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan 'stop'
     #备份
     /usr/bin/cp -af ${BINPATH}/${ShName} ${PATH}/backup_${ShName} 
     #替换
@@ -38,7 +38,7 @@ if [[ -d ${PATH} ]]; then
     #授权
     /usr/bin/chmod +x ${BINPATH}/${ShName}
     #开启
-    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan start
+    /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan 'start'
   fi
   echo -e "dynamix.system.autofan.cpu 替换配置完成\n"
   echo -e "备份文件 : ${PATH}/backup_${ShName}\n"
