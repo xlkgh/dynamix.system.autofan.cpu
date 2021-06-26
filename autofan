@@ -230,6 +230,7 @@ function_get_current_cpu_temp() {
   cpu_temp=$($bin_sen | grep "CPU Temp" | awk '{print $3}' | tr -cd "[0-9.]" | sed "s/\..*//g")
 
   if [[ $cpu_temp -gt 1 ]];then
+    #compare mb_temp and cpu_temp
     if [[ $cpu_temp -gt $HIGHEST_TEMP ]];then
       HIGHEST_TEMP=$cpu_temp
       echo "cpu_temp(${cpu_temp}) is greater than mb_temp(${mb_temp})"
