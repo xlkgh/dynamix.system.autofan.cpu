@@ -204,14 +204,47 @@ function_get_highest_hd_temp() {
 
 function_get_current_cpu_temp() {
   HIGHEST_TEMP=0
+
+  #get hd_temp
+  for DISK in "${HD[@]}"; do
+    SLEEPING=`hdparm -C ${DISK} | grep -c standby`
+    if [[ $SLEEPING -eq 0 ]]; then
+      if [[ $DISK == /dev/nvme[0-9] ]]; then
+        hd_temp=$(smartctl -A $DISK | awk '$1=="Temperature:" {print $2;exit}')
+      else
+        hd_temp=$(smartctl -A $DISK | awk '$1==190||$1==194 {print $10;exit}')
+      fi
+    fi
+  done
+
   bin_sen=`which sensors`
-  cpu_temp=$($bin_sen | grep "CPU Temp" | awk '{print $3}' | tr -cd "[0-9.]" | sed "s/\..*//g")
+  #get motherboard _temp
+  mb_temp=$($bin_sen | grep "MB Temp" | awk '{print $3}' | tr -cd "[0-9.]" | sed "s/\..*//g")
   if [[ $cpu_temp -gt 1 ]];then
-    HIGHEST_TEMP=$cpu_temp
+    HIGHEST_TEMP=$mb_temp
+  else
+    echo "Check command sensors or MB Temp(Dynamix System Temperature)" | logger -t$program_name
+  fi
+
+  #get cpu_temp
+  cpu_temp=$($bin_sen | grep "CPU Temp" | awk '{print $3}' | tr -cd "[0-9.]" | sed "s/\..*//g")
+
+  if [[ $cpu_temp -gt 1 ]];then
+    if [[ $cpu_temp -gt $HIGHEST_TEMP ]];then
+      HIGHEST_TEMP=$cpu_temp
+      echo "cpu_temp(${cpu_temp}) is greater than mb_temp(${mb_temp})"
+    fi
   else
     echo "Check command sensors or CPU Temp(Dynamix System Temperature)" | logger -t$program_name
-    HIGHEST_TEMP=30
+    HIGHEST_TEMP=40
   fi
+
+  #compare hd_temp and cpu_temp
+  if [[ $HIGHEST_TEMP -le $hd_temp ]]; then
+    HIGHEST_TEMP=$hd_temp
+    echo "hd_temp(${hd_temp}) is greater than cpu_temp(${cpu_temp})"
+  fi
+
   echo $HIGHEST_TEMP
 }
 
