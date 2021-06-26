@@ -14,9 +14,13 @@
 
 这里是新添加的修改
 
+> 改为获取CPU\主板\硬盘中温度最高的值
+> 
+
 # exec
 
 ```
+/usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan 'stop'
 curl "https://gitee.com/xlkgh/dynamix.system.autofan.cpu/raw/master/dynamix.system.autofan.cpu.sh" | /bin/bash
 /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan 'start'
 
