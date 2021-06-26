@@ -21,8 +21,9 @@ curl "https://gitee.com/xlkgh/dynamix.system.autofan.cpu/raw/master/dynamix.syst
 /usr/local/emhttp/plugins/dynamix.system.autofan/scripts/rc.autofan 'start'
 
 ```
+ 
+# 配置开机自动替换
 
-#配置开机自动替换
 在go文件添加以下内容
 
 ```
